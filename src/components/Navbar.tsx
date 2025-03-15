@@ -2,11 +2,13 @@
 import { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
+  const isMobile = useIsMobile();
   
   // Handle scroll effect
   useEffect(() => {
@@ -72,19 +74,44 @@ const Navbar = () => {
           </button>
           
           {/* Mobile Navigation */}
-          <div className={`fixed inset-0 bg-white p-6 flex flex-col items-center justify-center space-y-8 transform transition-transform duration-300 ease-in-out md:hidden ${isOpen ? 'translate-x-0' : 'translate-x-full'}`}>
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.name}
-                to={link.path}
-                className={({ isActive }) => 
-                  `text-xl ${isActive ? 'text-boutique font-medium' : 'text-gray-700 hover:text-boutique'}`
-                }
-              >
-                {link.name}
-              </NavLink>
-            ))}
-          </div>
+          {isMobile && (
+            <div 
+              className={`fixed inset-0 bg-white/95 p-6 flex flex-col items-center justify-center space-y-8 transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}
+              style={{
+                pointerEvents: isOpen ? 'auto' : 'none',
+                visibility: isOpen ? 'visible' : 'hidden'
+              }}
+            >
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.name}
+                  to={link.path}
+                  className={({ isActive }) => 
+                    `text-xl ${isActive ? 'text-boutique font-medium' : 'text-gray-700 hover:text-boutique'}`
+                  }
+                >
+                  {link.name}
+                </NavLink>
+              ))}
+            </div>
+          )}
+          
+          {/* Desktop Mobile Navigation Fallback (when useIsMobile hook hasn't initialized yet) */}
+          {!isMobile && (
+            <div className={`fixed inset-0 bg-white/95 p-6 flex flex-col items-center justify-center space-y-8 transform transition-transform duration-300 ease-in-out md:hidden ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}>
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.name}
+                  to={link.path}
+                  className={({ isActive }) => 
+                    `text-xl ${isActive ? 'text-boutique font-medium' : 'text-gray-700 hover:text-boutique'}`
+                  }
+                >
+                  {link.name}
+                </NavLink>
+              ))}
+            </div>
+          )}
         </nav>
       </div>
     </header>
