@@ -1,6 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -17,16 +16,16 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 250 85% 74%;
+    --primary: 252 84% 74%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 252 17% 95%;
+    --secondary-foreground: 252 84% 74%;
 
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
 
-    --accent: 246 100% 96%;
+    --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
 
     --destructive: 0 84.2% 60.2%;
@@ -34,109 +33,109 @@
 
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
-    --ring: 250 85% 74%;
+    --ring: 252 84% 74%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
   }
 
-  * {
-    @apply border-border;
-  }
-  
-  html {
-    @apply scroll-smooth;
-  }
-  
-  body {
-    @apply bg-background text-foreground font-inter antialiased;
-  }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-playfair;
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
   }
 }
 
-@layer components {
-  .container-boutique {
-    @apply container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl;
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-inter;
   }
   
+  /* Heading styles */
   .heading-xl {
-    @apply font-playfair font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl tracking-tight;
+    @apply font-playfair text-4xl md:text-5xl lg:text-6xl font-bold;
   }
   
   .heading-lg {
-    @apply font-playfair font-medium text-2xl sm:text-3xl md:text-4xl tracking-tight;
+    @apply font-playfair text-3xl md:text-4xl font-bold;
   }
   
   .heading-md {
-    @apply font-playfair font-medium text-xl sm:text-2xl md:text-3xl tracking-tight;
+    @apply font-playfair text-2xl md:text-3xl font-bold;
   }
   
   .heading-sm {
-    @apply font-playfair font-medium text-lg sm:text-xl md:text-2xl tracking-tight;
+    @apply font-playfair text-xl md:text-2xl font-semibold;
   }
   
+  /* Body text styles */
   .body-lg {
-    @apply font-inter text-base sm:text-lg leading-relaxed;
+    @apply text-lg md:text-xl;
   }
   
   .body-md {
-    @apply font-inter text-sm sm:text-base leading-relaxed;
+    @apply text-base;
   }
   
   .body-sm {
-    @apply font-inter text-xs sm:text-sm leading-relaxed;
+    @apply text-sm;
   }
   
-  .glass-card {
-    @apply bg-white/80 backdrop-blur-sm rounded-xl shadow-boutique border border-white/50;
+  /* Custom container */
+  .container-boutique {
+    @apply container max-w-7xl mx-auto px-4 sm:px-6;
   }
   
-  .glass-card-dark {
-    @apply bg-gray-900/80 backdrop-blur-sm rounded-xl shadow-boutique border border-gray-800/50;
-  }
-  
-  .boutique-button {
-    @apply px-6 py-3 rounded-full font-medium transition-all duration-300 shadow-sm hover:shadow-md;
-  }
-  
+  /* Button styles */
   .boutique-button-primary {
-    @apply boutique-button bg-boutique text-white hover:bg-boutique-dark;
+    @apply inline-flex items-center justify-center px-6 py-3 bg-boutique text-white rounded-md hover:bg-boutique-dark transition-colors duration-300 font-medium;
   }
   
   .boutique-button-secondary {
-    @apply boutique-button bg-white text-boutique border border-boutique hover:bg-boutique-light;
+    @apply inline-flex items-center justify-center px-6 py-3 bg-transparent text-boutique border border-boutique rounded-md hover:bg-boutique-light transition-colors duration-300 font-medium;
   }
   
-  .input-boutique {
-    @apply rounded-lg border-gray-200 focus:border-boutique focus:ring-1 focus:ring-boutique transition-colors duration-200;
+  /* Card styles */
+  .glass-card {
+    @apply bg-white rounded-lg shadow-boutique hover:shadow-boutique-lg transition-all duration-300;
   }
   
-  .section-padding {
-    @apply py-16 md:py-24;
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1;
   }
   
+  /* Navigation */
   .nav-link {
-    @apply relative text-gray-700 hover:text-boutique transition-colors duration-200 after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-boutique after:transition-all after:duration-300 hover:after:w-full;
+    @apply relative font-medium text-gray-700 hover:text-boutique transition-colors after:absolute after:left-0 after:bottom-0 after:h-0.5 after:w-0 after:bg-boutique hover:after:w-full after:transition-all after:duration-300;
   }
   
   .nav-link-active {
     @apply text-boutique after:w-full;
-  }
-}
-
-/* Custom Animations */
-@layer utilities {
-  .mask-image-gradient {
-    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1.0) 50%, transparent 100%);
-  }
-  
-  .hover-scale {
-    @apply transition-transform duration-300 hover:scale-105;
-  }
-  
-  .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-boutique-lg;
   }
 }
