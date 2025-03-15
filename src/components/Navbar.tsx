@@ -76,40 +76,51 @@ const Navbar = () => {
           {/* Mobile Navigation */}
           {isMobile && (
             <div 
-              className={`fixed inset-0 bg-white/95 p-6 flex flex-col items-center justify-center space-y-8 transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}
+              className={`fixed inset-0 flex flex-col items-center justify-center space-y-8 transition-all duration-300 ease-in-out ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}
               style={{
                 pointerEvents: isOpen ? 'auto' : 'none',
-                visibility: isOpen ? 'visible' : 'hidden'
               }}
             >
-              {navLinks.map((link) => (
-                <NavLink
-                  key={link.name}
-                  to={link.path}
-                  className={({ isActive }) => 
-                    `text-xl ${isActive ? 'text-boutique font-medium' : 'text-gray-700 hover:text-boutique'}`
-                  }
-                >
-                  {link.name}
-                </NavLink>
-              ))}
+              {/* Background overlay */}
+              <div className="absolute inset-0 bg-white/95 backdrop-blur-md shadow-lg z-0"></div>
+              
+              {/* Navigation links */}
+              <div className="relative z-10 flex flex-col items-center justify-center space-y-8 py-20 w-full">
+                {navLinks.map((link) => (
+                  <NavLink
+                    key={link.name}
+                    to={link.path}
+                    className={({ isActive }) => 
+                      `text-xl ${isActive ? 'text-boutique font-medium' : 'text-gray-700 hover:text-boutique'}`
+                    }
+                  >
+                    {link.name}
+                  </NavLink>
+                ))}
+              </div>
             </div>
           )}
           
           {/* Desktop Mobile Navigation Fallback (when useIsMobile hook hasn't initialized yet) */}
           {!isMobile && (
-            <div className={`fixed inset-0 bg-white/95 p-6 flex flex-col items-center justify-center space-y-8 transform transition-transform duration-300 ease-in-out md:hidden ${isOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`}>
-              {navLinks.map((link) => (
-                <NavLink
-                  key={link.name}
-                  to={link.path}
-                  className={({ isActive }) => 
-                    `text-xl ${isActive ? 'text-boutique font-medium' : 'text-gray-700 hover:text-boutique'}`
-                  }
-                >
-                  {link.name}
-                </NavLink>
-              ))}
+            <div className={`fixed inset-0 md:hidden flex flex-col items-center justify-center space-y-8 transition-all duration-300 ease-in-out ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+              {/* Background overlay */}
+              <div className="absolute inset-0 bg-white/95 backdrop-blur-md shadow-lg z-0"></div>
+              
+              {/* Navigation links */}
+              <div className="relative z-10 flex flex-col items-center justify-center space-y-8 py-20 w-full">
+                {navLinks.map((link) => (
+                  <NavLink
+                    key={link.name}
+                    to={link.path}
+                    className={({ isActive }) => 
+                      `text-xl ${isActive ? 'text-boutique font-medium' : 'text-gray-700 hover:text-boutique'}`
+                    }
+                  >
+                    {link.name}
+                  </NavLink>
+                ))}
+              </div>
             </div>
           )}
         </nav>
