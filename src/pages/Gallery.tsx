@@ -2,6 +2,61 @@
 import GalleryGrid from '@/components/GalleryGrid';
 
 const Gallery = () => {
+  // Gallery images data
+  const galleryImages = [
+    {
+      id: 1,
+      src: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1887",
+      alt: "Facial treatment results",
+      category: "Results",
+      width: 1887,
+      height: 1200
+    },
+    {
+      id: 2,
+      src: "https://images.unsplash.com/photo-1614859638024-2f71344fc782?q=80&w=1887",
+      alt: "Skincare products",
+      category: "Products",
+      width: 1887,
+      height: 1200
+    },
+    {
+      id: 3,
+      src: "https://images.unsplash.com/photo-1619451683797-90fccc3b73d7?q=80&w=1887",
+      alt: "Facial treatment in progress",
+      category: "Treatments",
+      width: 1887,
+      height: 1200
+    },
+    {
+      id: 4,
+      src: "https://images.unsplash.com/photo-1614859638024-2f71344fc782?q=80&w=1887",
+      alt: "Before and after comparison",
+      category: "Results",
+      width: 1887,
+      height: 1200
+    },
+    {
+      id: 5,
+      src: "https://images.unsplash.com/photo-1619451683797-90fccc3b73d7?q=80&w=1887",
+      alt: "Spa environment",
+      category: "Spa",
+      width: 1887,
+      height: 1200
+    },
+    {
+      id: 6,
+      src: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=1887",
+      alt: "Premium skincare products",
+      category: "Products",
+      width: 1887,
+      height: 1200
+    }
+  ];
+
+  // Categories for filtering
+  const categories = ["Results", "Products", "Treatments", "Spa"];
+
   return (
     <div className="py-16 bg-white">
       <div className="container-boutique">
@@ -15,7 +70,7 @@ const Gallery = () => {
         </div>
         
         {/* Gallery Grid Component */}
-        <GalleryGrid />
+        <GalleryGrid images={galleryImages} categories={categories} />
         
         {/* Products Section */}
         <div className="mt-20">
